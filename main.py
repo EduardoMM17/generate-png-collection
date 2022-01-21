@@ -4,60 +4,141 @@ import random
 import threading
 from itertools import repeat
 from getLayersWithDetails import buildLayersDict
+from utils import fillFilenameArray
 import os
-
-I = 3
 
 """
 Watch out on the syntax and make sure to add a new trait all over the script if you add one. Same goes for removing a trait.
 """
 layers = buildLayersDict()
+print(layers)
 
 whole = [] # for duplicate check
 
 """
 Creates random shuffled lists of each trait category with all its traits and their desired quantity.
 """
-backgroundsList = []
-for x in layers['Backgrounds']:
-    backgroundsList.extend(repeat(x['Trait'], x['Quantity']))
-random.shuffle(backgroundsList)
-skinsList = []
-for x in layers['Skins']:
-    skinsList.extend(repeat(x['Trait'], x['Quantity']))
-random.shuffle(skinsList)
-mouthsList = []
-for x in layers['Mouths']:
-    mouthsList.extend(repeat(x['Trait'], x['Quantity']))
-random.shuffle(mouthsList)
-eyesList = []
-for x in layers['Eyes']:
-    eyesList.extend(repeat(x['Trait'], x['Quantity']))
-random.shuffle(eyesList)
-overheadsList = []
-for x in layers['Over Heads']:
-    overheadsList.extend(repeat(x['Trait'], x['Quantity']))
-random.shuffle(overheadsList)
+ojosList = []
+for x in layers['ojos']:
+    ojosList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(ojosList)
+
+orejasAList = []
+for x in layers['orejasA']:
+    orejasAList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(orejasAList)
+
+orejasBList = []
+for x in layers['orejasB']:
+    orejasBList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(orejasBList)
+
+orejasCList = []
+for x in layers['orejasC']:
+    orejasCList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(orejasCList)
+
+cuerpoList = []
+for x in layers['cuerpo']:
+    cuerpoList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(cuerpoList)
+
+narizList = []
+for x in layers['nariz']:
+    narizList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(narizList)
+
+poloList = []
+for x in layers['polo']:
+    poloList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(poloList)
+
+aretesList = []
+for x in layers['aretes']:
+    aretesList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(aretesList)
+
+fondosList = []
+for x in layers['fondos']:
+    fondosList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(fondosList)
+
+herramientaList = []
+for x in layers['herramienta']:
+    herramientaList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(herramientaList)
+
+brazosList = []
+for x in layers['brazos']:
+    brazosList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(brazosList)
+
+cuernosList = []
+for x in layers['cuernos']:
+    cuernosList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(cuernosList)
+
+bocaList = []
+for x in layers['boca']:
+    bocaList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(bocaList)
+
+gorraList = []
+for x in layers['gorra']:
+    gorraList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(gorraList)
+
+frenteList = []
+for x in layers['frente']:
+    frenteList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(frenteList)
+
+rayoList = []
+for x in layers['rayo']:
+    rayoList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(rayoList)
 
 path = 'images/' # standard path to the images directory
 
 """
 Please keep the same format which is having Eyes_ for example at least before the actual trait name. Don't forget .png or .jpg or whatever at the end.
 """
-bgs = ['01_BG_BlueSpace.png', '02_BG_PurpleBokeh.png', '03_BG_StringLigth.png', '04_BG_Space.png', '05_BG_Moon.png', '06_BG_Hallowen.png', '07_BG_SkyDreams.png', '08_BG_Grey.png', '09_BG_HardGrey.png', '10_BG_EnergySolana.png', '11_BG_Blue.png', '12_BG_BlueDiamond.png', '13_BG_SkyBlue.png', '14_BG_CloudSky.png', '15_BG_Pink.png', '16_BG_ChicSquare.png', '17_BG_NegativeLight.png', '18_BG_Sunset.png', '19_BG_True Mist.png', '20_BG_Aurora borealis.png']
-bg = ''
-skins = ['01_Skins_Base.png', '02_Skins_DarkBlocks.png', '03_Skins_VioletFlower.png', '04_Skins_Emerald.png', '05_Skins_Rubi.png', '06_Skins_Stone.png', '07_Skins_Gold.png', '08_Skins_Glacial.png', '09_Skins_PinkCuarzo.png', '10_Skins_PurpleGemmorado.png', '11_Skins_OLava.png', '12_Skins_GrungePink.png', '13_Skins_Rainbow.png', '14_Skins_Zombie.png', '15_Skins_BlueJelly.png', '16_Skins_RedJelly.png', '17_Skins_SmothEnergy.png', '18_Skins_PowerEnergy.png', '19_Skins_Wood.png', '20_Skins_DarkEnergy.png']
-skin = ''
-mouths = ['01_Mouth_Zombie.png', '02_Mouth_Vampiro.png', '03_Mouth_Dienton.png', '04_Mouth_Monsta.png', '05_Mouth_Rude.png', '06_Mouth_Vampire2.png', '07_Mouth_Sunrise.png', '08_Mouth_Tiburoncin.png', '09_Mouth_Lenguita.png', '10_Mouth_Sonrisa.png', '11_Mouth_Smile.png', '12_Mouth_Macabro.png', '13_Mouth_Thuglife.png']
-mouth = ''
-eyez = ['01_Eyes_Vampiro.png', '02_Eyes_Suspicaz.png', '03_Eyes_Enojado.png', '04_Eyes_Evil.png', '05_Eyes_Boton.png', '06_Eyes_Reptilian.png', '07_Eyes_Frog.png', '08_Eyes_Jelly.png', '09_Eyes_Machine.png', '10_Eyes_Visor.png', '11_Eyes_Mee.png', '12_Eyes_Kawai.png', '13_Eyes_Enforced.png', '14_Eyes_Wheel.png', '15_Eyes_Woman.png', '16_Eyes_OneEye.png', '17_Eyes_Sadness.png', '18_Eyes_Thuglife.png']
-eyes = ''
-overheads = ['01_Overhead_Astronaut.png', '02_Overhead_HermesWings.png', '03_Overhead_Crown.png', '04_Overhead_RedHat.png', '05_Overhead_Christmas hat.png']
-overhead = ''
+ojos = fillFilenameArray('ojos')
+ojo = ''
+orejasA = fillFilenameArray('orejasA')
+orejaA = ''
+orejasB = fillFilenameArray('orejasB')
+orejaB = ''
+orejasC = fillFilenameArray('orejasC')
+orejaC = ''
+cuerpos = fillFilenameArray('cuerpo')
+cuerpo = ''
+narizs = fillFilenameArray('nariz')
+nariz = ''
+polos = fillFilenameArray('polo')
+polo = ''
+aretes = fillFilenameArray('aretes')
+arete = ''
+fondos = fillFilenameArray('fondos')
+fondo = ''
+herramientas = fillFilenameArray('herramienta')
+herramienta = ''
+brazos = fillFilenameArray('brazos')
+brazo = ''
+cuernos = fillFilenameArray('cuernos')
+cuerno = ''
+bocas = fillFilenameArray('boca')
+boca = ''
+gorras = fillFilenameArray('gorra')
+gorra = ''
+frentes = fillFilenameArray('frente')
+frente = ''
+rayos = fillFilenameArray('rayo')
+rayo = ''
 
 def gen():
     count = 0
-    while count != 10: # size of collection, so script stops
+    while count != 17: # size of collection, so script stops
         traits = []
 
         traits_names = []
@@ -65,45 +146,135 @@ def gen():
         """
         Collecting of the randomly chosen traits.
         """
-        bgcheck = random.choice(backgroundsList)
-        backgroundsList.remove(bgcheck)
-        print(bgs)
-        for x in bgs:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == bgcheck:
-                bg = x
+        ojosCheck = random.choice(ojosList)
+        ojosList.remove(ojosCheck)
+        for x in ojos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == ojosCheck:
+                ojo = x
+                print(x)
+                break
+        
+        orejasACheck = random.choice(orejasAList)
+        orejasAList.remove(orejasACheck)
+        for x in orejasA:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == orejasACheck:
+                orejaA = x
                 print(x)
                 break
 
-        skincheck = random.choice(skinsList)
-        skinsList.remove(skincheck)
-        for x in skins:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == skincheck:
-                skin = x
+        orejasBCheck = random.choice(orejasBList)
+        orejasBList.remove(orejasBCheck)
+        for x in orejasB:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == orejasBCheck:
+                orejaB = x
+                print(x)
+                break
+        
+        orejasCCheck = random.choice(orejasCList)
+        orejasCList.remove(orejasCCheck)
+        for x in orejasC:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == orejasCCheck:
+                orejaC = x
+                print(x)
+                break
+        
+        cuerposCheck = random.choice(cuerpoList)
+        cuerpoList.remove(cuerposCheck)
+        for x in cuerpos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == cuerposCheck:
+                cuerpo = x
+                print(x)
+                break
+        
+        narizCheck = random.choice(narizList)
+        narizList.remove(narizCheck)
+        for x in narizs:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == narizCheck:
+                nariz = x
+                print(x)
+                break    
+
+        polosCheck = random.choice(poloList)
+        poloList.remove(polosCheck)
+        for x in polos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == polosCheck:
+                polo = x
+                print(x)
+                break    
+
+        aretesCheck = random.choice(aretesList)
+        aretesList.remove(aretesCheck)
+        for x in aretes:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == aretesCheck:
+                arete = x
+                print(x)
+                break    
+        
+        fondosCheck = random.choice(fondosList)
+        fondosList.remove(fondosCheck)
+        for x in fondos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == fondosCheck:
+                fondo = x
+                print(x)
+                break
+        
+        herramientasCheck = random.choice(herramientaList)
+        herramientaList.remove(herramientasCheck)
+        for x in herramientas:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == herramientasCheck:
+                herramienta = x
+                print(x)
+                break  
+
+        brazosCheck = random.choice(brazosList)
+        brazosList.remove(brazosCheck)
+        for x in brazos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == brazosCheck:
+                brazo = x
+                print(x)
+                break  
+
+        cuernosCheck = random.choice(cuernosList)
+        cuernosList.remove(cuernosCheck)
+        for x in cuernos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == cuernosCheck:
+                cuerno = x
+                print(x)
                 break
 
-        mouthcheck = random.choice(mouthsList)
-        mouthsList.remove(mouthcheck)
-        for x in mouths:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == mouthcheck:
-                mouth = x
+        bocasCheck = random.choice(bocaList)
+        bocaList.remove(bocasCheck)
+        for x in bocas:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == bocasCheck:
+                boca = x
+                print(x)
+                break   
+
+        gorrasCheck = random.choice(gorraList)
+        gorraList.remove(gorrasCheck)
+        for x in gorras:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == gorrasCheck:
+                gorra = x
+                print(x)
+                break 
+
+        frentesCheck = random.choice(frenteList)
+        frenteList.remove(frentesCheck)
+        for x in frentes:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == frentesCheck:
+                frente = x
+                print(x)
                 break
 
-        eyescheck = random.choice(eyesList)
-        eyesList.remove(eyescheck)
-        for x in eyez:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == eyescheck:
-                eyes = x
+        rayosCheck = random.choice(rayoList)
+        rayoList.remove(rayosCheck)
+        for x in rayos:
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == rayosCheck:
+                rayo = x
+                print(x)
                 break
-
-        overheadcheck = random.choice(overheadsList)
-        overheadsList.remove(overheadcheck)
-        for x in overheads:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == overheadcheck:
-                overhead = x
-                print(overhead)
-                break
-
-        traits.extend((bg, skin, mouth, eyes, overhead)) # putting all traits for this NFT in a list (make sure to choose your order of layering by this list from left to right)
+            
+        traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, frente, cuerno, ojo, nariz, arete, boca, gorra, rayo)) # putting all traits for this NFT in a list (make sure to choose your order of layering by this list from left to right)
         print(traits)
         print(count)
         for trait in traits:
@@ -115,7 +286,7 @@ def gen():
             whole.append(traits)
 
             for trait in traits:
-                if 'BG' in trait:
+                if 'fondos' in trait:
                     nft = Image.open(path+trait).convert('RGBA') # important for background
                 else:
                     trait = Image.open(path+trait)
@@ -150,13 +321,22 @@ def gen():
             count += 1
 
         else: # add traits to the list when a duplicate is found
-            backgroundsList.append(traits_names[0])
-            skinsList.append(traits_names[1])
-            mouthsList.append(traits_names[2])
-            eyesList.append(traits_names[3])
-            overheadsList.append(traits_names[4])
-
-
+            fondosList.append(traits_names[0])
+            cuerpoList.append(traits_names[1])
+            brazosList.append(traits_names[2])
+            poloList.append(traits_names[3])
+            herramientaList.append(traits_names[4])
+            orejasAList.append(traits_names[5])
+            orejasBList.append(traits_names[6])
+            orejasCList.append(traits_names[7])
+            frenteList.append(traits_names[8])
+            cuernosList.append(traits_names[9])
+            ojosList.append(traits_names[10])
+            narizList.append(traits_names[11])
+            aretesList.append(traits_names[12])
+            bocaList.append(traits_names[13])
+            gorraList.append(traits_names[14])
+            rayoList.append(traits_names[15])
     else:
         print('Successfully Generated All NFTs!')
 

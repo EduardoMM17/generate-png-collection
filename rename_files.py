@@ -7,8 +7,8 @@ def main():
         fileNameSplitted = filename.split('_')
         layer = fileNameSplitted[0]
         number = count + 1
-        if(len(fileNameSplitted) > 2):
-            description = fileNameSplitted[2].split('.')[0]
+        if(len(fileNameSplitted) > 3):
+            description = f"{fileNameSplitted[2]}{fileNameSplitted[3].split('.')[0]}"
             if description != '':
                 dst = f"{number}_{folder}_{description}.png"
             else:
@@ -24,7 +24,7 @@ def main():
 
 
 def getNumberAsString(number):
-    numbers = ['one','two','three','four','friday','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen']
+    numbers = ['one','two','three','four','friday','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen']
     return numbers[number-1]
 
 
