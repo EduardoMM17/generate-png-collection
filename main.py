@@ -98,6 +98,11 @@ for x in layers['rayo']:
     rayoList.extend(repeat(x['Trait'], int(x['Quantity'])))
 random.shuffle(rayoList)
 
+parteCabezaList = []
+for x in layers['parteCabeza']:
+    parteCabezaList.extend(repeat(x['Trait'], int(x['Quantity'])))
+random.shuffle(parteCabezaList)
+
 path = 'images/' # standard path to the images directory
 
 """
@@ -135,10 +140,12 @@ frentes = fillFilenameArray('frente')
 frente = ''
 rayos = fillFilenameArray('rayo')
 rayo = ''
+parteCabezas = fillFilenameArray('parteCabeza')
+parteCabeza = ''
 
 def gen():
     count = 0
-    while count != 17: # size of collection, so script stops
+    while count != 5000: # size of collection, so script stops
         traits = []
 
         traits_names = []
@@ -250,14 +257,6 @@ def gen():
                 print(x)
                 break   
 
-        gorrasCheck = random.choice(gorraList)
-        gorraList.remove(gorrasCheck)
-        for x in gorras:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == gorrasCheck:
-                gorra = x
-                print(x)
-                break 
-
         frentesCheck = random.choice(frenteList)
         frenteList.remove(frentesCheck)
         for x in frentes:
@@ -266,15 +265,52 @@ def gen():
                 print(x)
                 break
 
-        rayosCheck = random.choice(rayoList)
-        rayoList.remove(rayosCheck)
-        for x in rayos:
-            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == rayosCheck:
-                rayo = x
+        parteCabezaCheck = random.choice(parteCabezaList)
+        parteCabezaList.remove(parteCabezaCheck)
+        for x in parteCabezas:           
+            if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == parteCabezaCheck:
+                parteCabeza = x
                 print(x)
                 break
-            
-        traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, frente, cuerno, ojo, nariz, arete, boca, gorra, rayo)) # putting all traits for this NFT in a list (make sure to choose your order of layering by this list from left to right)
+    
+        auxGorraListLen = len(gorraList)
+        if len(gorraList) > 0:
+            gorrasCheck = random.choice(gorraList)
+            gorraList.remove(gorrasCheck)
+            for x in gorras:
+                if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == gorrasCheck:
+                    gorra = x
+                    print(x)
+                    break
+
+        auxRayoListLen = len(rayoList)
+        if len(rayoList) > 0:
+            rayosCheck = random.choice(rayoList)
+            rayoList.remove(rayosCheck)
+            for x in rayos:
+                if x.split('.png')[0].replace('_', ' ').replace(' ', '_', 2).split('_')[2] == rayosCheck:
+                    rayo = x
+                    print(x)
+                    break
+
+        if auxGorraListLen == 0:
+            if auxRayoListLen == 0:
+                traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, parteCabeza, frente, cuerno, ojo, nariz, boca, arete)) 
+            else:
+                traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, parteCabeza, frente, cuerno, ojo, nariz, boca, arete, rayo)) 
+        elif auxRayoListLen == 0:
+            if auxGorraListLen == 0:
+                traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, parteCabeza, frente, cuerno, ojo, nariz, boca, arete)) 
+            else:
+                traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, parteCabeza, frente, cuerno, ojo, nariz, boca, arete, gorra)) 
+        else:
+            traits.extend((fondo, cuerpo, brazo, polo, herramienta, orejaA,orejaB, orejaC, parteCabeza, frente, cuerno, ojo, nariz, boca, arete, gorra, rayo)) 
+
+        #Solo hay uno
+            #ParteCabeza
+            #Cuerpo
+            #OrejaB
+
         print(traits)
         print(count)
         for trait in traits:
@@ -296,19 +332,44 @@ def gen():
             This is the most dangerous part. Please triple check your metadata because 95% of all errors when uploading to a Candy Machine are caused by wrong metadata.
             Please remove the comments from it if you are done with setup xd.
             """
+
+            hatValue = f"{auxGorraListLen}"
+            laserValue = f"{auxRayoListLen}"
+            if auxGorraListLen != 0:
+                if auxRayoListLen != 0:
+                    hatValue = traits_names[11]
+                    laserValue = traits_names[12]
+                else:
+                    hatValue = traits_names[11]
+            elif auxRayoListLen != 0:
+                if auxGorraListLen != 0:
+                    hatValue = traits_names[11]
+                    laserValue = traits_names[12]
+                else:
+                    laserValue = traits_names[11]
+
             metadata = {
-                "name":f"Sellos #{count+1}","symbol":"", # +1 because metadata files need to start with 0 but your NFT obviously has the number 1
-                "description":"This is my awesome collection of Nfts.", # description of your project
-                "seller_fee_basis_points":500,"image":f"{count}.png","external_url":"https://blacyagencia.com/", # 500 stands for 5% royalties on marketplaces and external_url is your project's website
+                "name":f"Wari #{count+1}","symbol":"WR", # +1 because metadata files need to start with 0 but your NFT obviously has the number 1
+                "description":"Opportunities NFT collection by BiPLab", # description of your project
+                "seller_fee_basis_points":500,"image":f"{count}.png","external_url":"https://www.opportunitiesnfts.io/", # 500 stands for 5% royalties on marketplaces and external_url is your project's website
                 "attributes":[
                     {"trait_type":"Background","value":traits_names[0]}, # number in the brackets is the index number of the trait in the list where you decided the layer order
-                    {"trait_type":"Skin","value":traits_names[1]},
-                    {"trait_type":"Mouth","value":traits_names[2]},
-                    {"trait_type":"Eyes","value":traits_names[3]},
-                    {"trait_type":"Over Head","value":traits_names[4]}],
-                    "collection":{"name":"Project","family":"Project"},
+                    {"trait_type":"Arms","value":traits_names[2]},
+                    {"trait_type":"T-Shirt","value":traits_names[3]},
+                    {"trait_type":"Tool","value":traits_names[4]},
+                    {"trait_type":"Ears","value":traits_names[5]},
+                    {"trait_type":"Forehead","value":traits_names[9]},
+                    {"trait_type":"Horns","value":traits_names[10]},
+                    {"trait_type":"Eyes","value":traits_names[11]},
+                    {"trait_type":"Noose","value":traits_names[12]},
+                    {"trait_type":"Mouth","value":traits_names[13]},
+                    {"trait_type":"Earrings","value":traits_names[14]},
+                    {"trait_type":"Hat","value":hatValue},
+                    {"trait_type":"Laser","value":laserValue},
+                    ],
+                    "collection":{"name":"OpportunitiesNFTs","family":"BiPLab"},
                     "properties":{"files":[{"uri":f"{count}.png","type":"image/png"}],
-                    "category":"image","maxSupply":1,"creators":[{"address":"BUkGkSTEtusFLpmZHwC9jzVUqpDKDL83dWzTrr8vAZqc","share":100}]} # 100 means 100% of the royalties' proceeds and you can add more to split it
+                    "creators":[{"address":"BUkGkSTEtusFLpmZHwC9jzVUqpDKDL83dWzTrr8vAZqc","share":100}]} # 100 means 100% of the royalties' proceeds and you can add more to split it
             }
 
             nft.save(f'results/{count}.png',"PNG") # saving of the generated NFT
